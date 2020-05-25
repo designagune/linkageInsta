@@ -34,10 +34,11 @@
             }).done(function (data) {
                 console.log(data);
                 var list = "";
-                // $.each(data, function (i, v) {
-                //     list += '<div class="instagram"><div class="instagram-thum" style="background:url(' + v.thum + ') no-repeat top center;"></div></a></div>';
-                // });
-                // $('.playon-instagarm').append(list);
+                $.each($(data).data, function (i, v) {
+                    console.log($(v));
+                    //list += '<div class="instagram"><div class="instagram-thum" style="background:url(' + v.thum + ') no-repeat top center;"></div></a></div>';
+                });
+                $('.playon-instagarm').append(list);
             }).fail(function () {
                 console.log("fail");
             });
