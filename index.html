@@ -33,6 +33,7 @@
                 dataType: "jsonp"
             }).done(function (data) {
                 console.log(data);
+                window.data = data;
                 var list = "";
                 $.each($(data).data, function (i, v) {
                     console.log($(v));
