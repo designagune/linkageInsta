@@ -26,16 +26,18 @@
             //         $('.playon-instagarm').append(list);
             //     }
             // });
+            var token = "IGQVJVanR3dmRFY0V0WWZAHeHlheXBIN3lwbFhlYjRJSGE5S2FXenJGTEhCUmJmeFRyZAzVETUhEWUNjZA0pMb3pLNTNzZA0JmazBWeE9EN2FLMjh2NFJPSHRjSGNHVTdWODhvSmlERWpLQzYtRFljcUV6U044RDhzSGdtVzZA3";
+
             $.ajax({
-                url: "./instagram.php",
-                dataType: "json"
+                url: "https://graph.instagram.com/me/media?access_token=" + token + "&fields=id,caption,media_type,media_url,thumbnail_url,permalink",
+                dataType: "jsonp"
             }).done(function (data) {
                 console.log(data);
                 var list = "";
-                $.each(data, function (i, v) {
-                    list += '<div class="instagram"><div class="instagram-thum" style="background:url(' + v.thum + ') no-repeat top center;"></div></a></div>';
-                });
-                $('.playon-instagarm').append(list);
+                // $.each(data, function (i, v) {
+                //     list += '<div class="instagram"><div class="instagram-thum" style="background:url(' + v.thum + ') no-repeat top center;"></div></a></div>';
+                // });
+                // $('.playon-instagarm').append(list);
             }).fail(function () {
                 console.log("fail");
             });
