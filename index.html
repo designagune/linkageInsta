@@ -7,25 +7,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            // $.ajax({
-            //     url: "./instagram.php",
-            //     success: function (response) {
-            //         var list = '';
-            //         var result = JSON.parse(response);
-            //         $.each(result, function (key, val) {
-            //             /* 
-            //             val.username : 사용자 이름 ➌
-            //             val.link : 인스타그램 게시물 링크 주소 ➌
-            //             val.thum : 썸네일이미지 주소 ➌
-            //             vak.text : 인스타그램 게시물 내용 ➌
-            //             */
-            //             list += '<div class="instagram">' +
-            //                 '<div class="instagram-thum" style="background:url(' + val.thum + ') no-repeat top center;"></div></a>' +
-            //                 '</div>';
-            //         });
-            //         $('.playon-instagarm').append(list);
-            //     }
-            // });
             var token = "IGQVJVanR3dmRFY0V0WWZAHeHlheXBIN3lwbFhlYjRJSGE5S2FXenJGTEhCUmJmeFRyZAzVETUhEWUNjZA0pMb3pLNTNzZA0JmazBWeE9EN2FLMjh2NFJPSHRjSGNHVTdWODhvSmlERWpLQzYtRFljcUV6U044RDhzSGdtVzZA3";
 
             $.ajax({
@@ -37,7 +18,11 @@
                 var list = "";
                 $.each($(data).data, function (i, v) {
                     console.log($(v));
-                    //list += '<div class="instagram"><div class="instagram-thum" style="background:url(' + v.thum + ') no-repeat top center;"></div></a></div>';
+                    list += "<div class='instagram-box'>";
+                    list += "<a href='" + v.permalink + "' target='_blank' style='background:url(" + v.media_url + ") no-repeat center center;''>";
+                    list += "<p>" + v.caption + "</p>";
+                    list += "</a>";
+                    list += "</div>";
                 });
                 $('.playon-instagarm').append(list);
             }).fail(function () {
@@ -45,11 +30,77 @@
             });
         });
     </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .playon-instagarm {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .instagram-box {
+            float: left;
+            width: 20%;
+        }
+
+        .instagram-box a {
+            background: center center no-repeat;
+            display: block;
+            width: 100%;
+            background-size: cover;
+            position: relative;
+            text-decoration: none;
+            padding-top: 100%;
+        }
+
+        .instagram-box a::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #000;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            transition: ease-in-out all .3s;
+        }
+
+        .instagram-box a:hover::before {
+            opacity: .7;
+            transition: ease-in-out all .3s;
+        }
+
+        .instagram-box>a>p {
+            box-sizing: border-box;
+            padding: 20px 40px;
+            width: 100%;
+            color: white;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            z-index: 11;
+            transition: ease-in-out all .3s;
+        }
+
+        .instagram-box a:hover p {
+            opacity: 1;
+            transition: ease-in-out all .3s;
+
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Instagram API Test</h2>
-    <div class="playon-instagarm"></div>
+    <div class="wrap">
+        <h2>Instagram API Test</h2>
+        <div class="playon-instagarm"></div>
+    </div>
 </body>
 
 </html>
