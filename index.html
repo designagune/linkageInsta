@@ -4,6 +4,30 @@
 <head>
     <meta charset="utf-8" />
     <title>instaTest</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "./instagram.php",
+                success: function (response) {
+                    var list = '';
+                    var result = JSON.parse(response);
+                    $.each(result, function (key, val) {
+                        /* 
+                        val.username : 사용자 이름 ➌
+                        val.link : 인스타그램 게시물 링크 주소 ➌
+                        val.thum : 썸네일이미지 주소 ➌
+                        vak.text : 인스타그램 게시물 내용 ➌
+                        */
+                        list += '<div class="instagram">' +
+                            '<div class="instagram-thum" style="background:url(' + val.thum + ') no-repeat top center;"></div></a>' +
+                            '</div>';
+                    });
+                    $('.playon-instagarm').append(list);
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
