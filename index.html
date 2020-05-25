@@ -16,8 +16,7 @@
                 console.log(data);
                 window.data = data;
                 var list = "";
-                $.each($(data).data, function (i, v) {
-                    console.log($(v));
+                $.each(data.data, function (i, v) {
                     list += "<div class='instagram-box'>";
                     list += "<a href='" + v.permalink + "' target='_blank' style='background:url(" + v.media_url + ") no-repeat center center;''>";
                     list += "<p>" + v.caption + "</p>";
